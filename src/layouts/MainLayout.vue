@@ -9,8 +9,9 @@
         <div class="text-subtitle1">{{ todaysDate }}</div>
       </div>
       <q-img
-        src="/images/mountain.jpg"
+        src="../assets/mountain.jpg"
         class="header-image absolute-top"
+        :srcset="{ error: '../assets/placeholder.jpg' }"
       />
     </q-header>
 
@@ -19,24 +20,24 @@
         <q-list padding>
           <q-item to="/" exact clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="list" />
+              <q-icon name="list" aria-label="Todo List" />
             </q-item-section>
             <q-item-section>Todo</q-item-section>
           </q-item>
           <q-item to="/help" exact clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="help" />
+              <q-icon name="help" aria-label="Help" />
             </q-item-section>
             <q-item-section>Help</q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
-      <q-img class="absolute-top" src="/images/mountain.jpg" style="height: 192px">
+      <q-img class="absolute-top" src="../assets/mountain.jpg" style="height: 192px">
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="56px" class="q-mb-sm">
-            <img src="/images/Avatar.jpg" />
+            <img src="../assets/Avatar.jpg" alt="User Avatar" />
           </q-avatar>
-          <div class="text-weight-bold">Johnny</div>
+          <div class="text-weight-bold">{{ userName }}</div>
         </div>
       </q-img>
     </q-drawer>
@@ -58,6 +59,7 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(false);
+    const userName = ref("Johnny");
 
     const toggleLeftDrawer = () => {
       leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -72,6 +74,7 @@ export default defineComponent({
       leftDrawerOpen,
       toggleLeftDrawer,
       todaysDate,
+      userName,
     };
   },
 });
